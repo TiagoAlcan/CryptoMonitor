@@ -12,32 +12,20 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import br.com.fiap.cryptomonitor.ui.theme.CryptomonitorTheme
 
-class MainActivity : ComponentActivity() {
+class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent {
-            CryptomonitorTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-                    Greeting("Android")
-                }
-            }
-        }
+        setContentView(R.layout.activity_main)
+
+        // Configurando a toolbar
+        val toolbarMain: Toolbar = findViewById(R.id.toolbar_main)
+        configureToolbar(toolbarMain)
     }
-}
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-            text = "Hello $name!",
-            modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    CryptomonitorTheme {
-        Greeting("Android")
+    private fun configureToolbar(toolbar: Toolbar) {
+        setSupportActionBar(toolbar)
+        toolbar.setTitleTextColor(getColor(R.color.white))
+        supportActionBar?.setTitle(getText(R.string.app_title))
+        supportActionBar?.setBackgroundDrawable(getDrawable(R.color.primary))
     }
 }
